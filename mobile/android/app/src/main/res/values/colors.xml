@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#285647</color>
+    <color name="colorPrimaryDark">#184D3D</color>
+    <color name="colorAccent">#285647</color>
+    <color name="workflow_background">#F5F4EF</color>
+</resources>

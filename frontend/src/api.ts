@@ -1,3 +1,6 @@
+import { LOCAL_APP } from "./localMode";
+import { requestLocal, uploadLocal, resolveLocalMedia } from "./local";
+
 let csrf: { token: string; headerName: string } | null = null;
 let personalMode = false;
 let recovery: Promise<void> | null = null;
@@ -64,6 +67,7 @@ export async function api<T = any>(
   body?: unknown,
   method = body === undefined ? "GET" : "POST",
 ): Promise<T> {
+  if (LOCAL_APP) return requestLocal<T>(path, body, method);
   if (method !== "GET" && !csrf) await getCsrf();
   const response = await withRecovery(
     () => send(path, body, method),
@@ -92,6 +96,7 @@ export function businessDate(timezone = "Asia/Tokyo") {
     .join("-");
 }
 export async function upload(org: string, file: File): Promise<string> {
+  if (LOCAL_APP) return uploadLocal(org, file);
   if (!csrf) await getCsrf();
   const body = new FormData();
   body.append("file", file);
@@ -106,4 +111,7 @@ export async function upload(org: string, file: File): Promise<string> {
   if (!response.ok)
     throw new Error((await response.json()).message || "图片上传失败");
   return (await response.json()).url;
+}
+export function mediaUrl(path: string): string {
+  return LOCAL_APP ? resolveLocalMedia(path) : path;
 }

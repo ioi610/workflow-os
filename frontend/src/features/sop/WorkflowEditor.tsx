@@ -15,7 +15,7 @@ import {
   useParams,
   useSearchParams,
 } from "react-router-dom";
-import { api, upload } from "../../api";
+import { api, upload, mediaUrl } from "../../api";
 import { Button } from "../../components/ui";
 import { WorkflowCanvas } from "./FlowBoard";
 import {
@@ -928,7 +928,7 @@ function WorkflowEditorForm(c: Context) {
                           {detail.imageUrl && (
                             <div className="editor-image">
                               <img
-                                src={detail.imageUrl}
+                                src={mediaUrl(detail.imageUrl)}
                                 alt={`${detail.title || "具体做法"}的参考图片`}
                               />
                               <button

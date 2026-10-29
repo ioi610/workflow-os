@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, ArrowUpRight, Pencil } from "lucide-react";
 import { useEffect } from "react";
 import { Link, Navigate, useParams, useSearchParams } from "react-router-dom";
-import { api } from "../../api";
+import { api, mediaUrl } from "../../api";
 import type { Context, Workflow } from "../../types";
 import {
   normalizeName,
@@ -148,7 +148,7 @@ export function ModuleInstructions(c: Context) {
             {detail.imageUrl && (
               <figure>
                 <img
-                  src={detail.imageUrl}
+                  src={mediaUrl(detail.imageUrl)}
                   alt={`${detail.title}的操作参考图`}
                 />
                 <figcaption>操作参考图</figcaption>

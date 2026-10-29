@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#285647" />
+    <meta
+      name="description"
+      content="WorkFlow OS：用可拖动的方框整理工作流程，记录每一步的具体做法。下载电脑、Android 安装版，或在 iPhone、iPad 和浏览器中使用。无需登录，本机保存。"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    />
+    <title>WorkFlow OS · 下载与功能演示</title>
+    <link rel="icon" href="./app/icon.svg" type="image/svg+xml" />
+    <style>
+      :root {
+        color-scheme: light;
+        --paper: #f7f6f0;
+        --white: #fffefa;
+        --ink: #213c32;
+        --green: #285647;
+        --muted: #68746c;
+        --line: #dce2d7;
+        --lime: #e8efd5;
+        --soft: #f0f3e9;
+        --peach: #f1d7bc;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 32px;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font:
+          16px/1.7 -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "PingFang SC",
+          "Microsoft YaHei",
+          sans-serif;
+      }
+      a {
+        color: inherit;
+        text-underline-offset: 4px;
+      }
+      button,
+      a {
+        -webkit-tap-highlight-color: transparent;
+      }
+      a:focus-visible {
+        outline: 3px solid #8ba34f;
+        outline-offset: 5px;
+        border-radius: 6px;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      svg {
+        flex: none;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: 650;
+        line-height: 1.25;
+        letter-spacing: -0.035em;
+      }
+      h1 {
+        font-size: clamp(40px, 5.2vw, 70px);
+      }
+      h2 {
+        font-size: clamp(29px, 3.5vw, 42px);
+      }
+      h3 {
+        font-size: 23px;
+      }
+      small {
+        font-size: 13px;
+      }
+      main,
+      .topbar,
+      .footer {
+        width: min(1160px, calc(100% - 80px));
+        margin: auto;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 28px 0;
+        gap: 20px;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        font-size: 20px;
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: -0.03em;
+      }
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        background: var(--green);
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: var(--lime);
+      }
+      .top-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .top-links a {
+        text-decoration: none;
+      }
+      .top-links a:hover {
+        color: var(--green);
+      }
+      .version {
+        display: inline-block;
+        background: var(--lime);
+        padding: 5px 11px;
+        border-radius: 100px;
+        color: var(--green);
+        font-size: 12px;
+        letter-spacing: 0.02em;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        align-items: center;
+        gap: 60px;
+        padding: 70px 0 90px;
+      }
+      .eyebrow {
+        font-size: 13px;
+        letter-spacing: 0.13em;
+        color: var(--green);
+        font-weight: 650;
+        margin-bottom: 22px;
+      }
+      .hero h1 span {
+        color: #74833d;
+      }
+      .hero-copy {
+        max-width: 510px;
+        margin: 26px 0 30px;
+        color: var(--muted);
+        font-size: 17px;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        padding: 13px 20px;
+        border: 1px solid var(--green);
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+      }
+      .button:hover {
+        transform: translateY(-2px);
+      }
+      .button.primary {
+        background: var(--green);
+        color: var(--white);
+      }
+      .button.primary:hover {
+        background: #1d4437;
+      }
+      .button.secondary {
+        background: transparent;
+        color: var(--green);
+      }
+      .hero-note {
+        margin-top: 17px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .hero-visual {
+        position: relative;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 24px;
+        box-shadow: 0 24px 75px #213c320b;
+        transform: rotate(-1deg);
+      }
+      .visual-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 17px;
+        margin-bottom: 24px;
+        font-size: 14px;
+      }
+      .visual-dots {
+        display: flex;
+        gap: 5px;
+      }
+      .visual-dots i {
+        width: 6px;
+        height: 6px;
+        background: #c5cebc;
+        border-radius: 50%;
+      }
+      .visual-canvas {
+        display: grid;
+        grid-template-columns: 1fr 24px 1fr;
+        gap: 12px;
+        align-items: center;
+        position: relative;
+      }
+      .mini-box {
+        border: 1px solid #c8d4b7;
+        border-radius: 12px;
+        background: var(--soft);
+        padding: 18px 15px;
+        min-height: 115px;
+      }
+      .mini-box.warm {
+        background: #f7ede0;
+        border-color: #e7d3b9;
+      }
+      .mini-box strong {
+        display: block;
+        font-size: 16px;
+      }
+      .mini-box span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 7px;
+      }
+      .mini-number {
+        font-size: 11px !important;
+        color: #7d8958 !important;
+        margin: 0 0 8px !important;
+        letter-spacing: 0.12em;
+      }
+      .visual-arrow {
+        color: #a4b18d;
+        text-align: center;
+        font-size: 25px;
+      }
+      .mini-detail {
+        margin-top: 22px;
+        border-top: 1px dashed var(--line);
+        padding-top: 19px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .mini-detail strong {
+        color: var(--ink);
+        font-size: 13px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .mini-detail p + p {
+        margin-top: 5px;
+      }
+      .visual-tag {
+        position: absolute;
+        bottom: -17px;
+        right: 26px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--green);
+        color: var(--white);
+        padding: 8px 16px;
+        border-radius: 9px;
+        font-size: 12px;
+        box-shadow: 0 8px 16px #28564715;
+      }
+      .visual-tag span {
+        height: 6px;
+        width: 6px;
+        border-radius: 50%;
+        background: #d5e0a7;
+      }
+      .section-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 28px;
+        margin-bottom: 27px;
+      }
+      .section-heading p {
+        max-width: 430px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .downloads {
+        padding: 12px 0 76px;
+      }
+      .platform-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+      .platform-card {
+        display: flex;
+        flex-direction: column;
+        padding: 26px;
+        border: 1px solid var(--line);
+        background: var(--white);
+        border-radius: 16px;
+      }
+      .platform-card.featured {
+        background: #eef2e5;
+        border-color: #cfdbb8;
+      }
+      .platform-heading {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 10px;
+      }
+      .platform-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+        background: var(--soft);
+        display: grid;
+        place-items: center;
+        color: var(--green);
+      }
+      .platform-card h3 {
+        font-size: 21px;
+      }
+      .platform-card p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .requirements {
+        font-size: 12px !important;
+        margin-bottom: 20px;
+      }
+      .platform-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: auto;
+        padding-top: 18px;
+      }
+      .download-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        border: 1px solid #d1dac7;
+        border-radius: 8px;
+        background: var(--white);
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 11px;
+        text-decoration: none;
+      }
+      .download-link:hover {
+        background: var(--lime);
+        border-color: #a8bb8b;
+      }
+      .platform-card.featured .download-link {
+        background: var(--green);
+        border-color: var(--green);
+        color: var(--white);
+      }
+      .architecture {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: auto;
+        padding-top: 18px;
+      }
+      .architecture span {
+        display: block;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 7px;
+      }
+      .architecture .download-link {
+        padding: 7px 9px;
+        font-size: 12px;
+      }
+      .platform-card .install-help {
+        font-size: 12px;
+        margin-top: 13px;
+        line-height: 1.65;
+      }
+      .platform-card .pill {
+        display: inline-block;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        border-radius: 5px;
+        background: #e4ebd7;
+        color: var(--green);
+        padding: 2px 6px;
+        margin-left: 5px;
+        vertical-align: middle;
+      }
+      .download-footnote {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 20px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .download-footnote a:hover {
+        color: var(--green);
+      }
+      .demo-section {
+        padding: 60px 0 68px;
+        border-top: 1px solid var(--line);
+      }
+      .demo-grid {
+        display: grid;
+        grid-template-columns: 1.65fr 1fr;
+        align-items: start;
+        gap: 22px;
+      }
+      .demo-card {
+        border: 1px solid var(--line);
+        background: var(--white);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+      .demo-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--line);
+      }
+      .demo-label h3 {
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+      .demo-label a {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .demo-image {
+        background: #ebeedd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 220px;
+      }
+      .demo-image img {
+        width: 100%;
+        height: auto;
+      }
+      .demo-image.mobile {
+        padding: 20px;
+        min-height: 220px;
+      }
+      .demo-image.mobile img {
+        max-height: 410px;
+        width: auto;
+        max-width: 100%;
+        border-radius: 18px;
+        box-shadow: 0 16px 28px #1f3c3215;
+      }
+      .demo-caption {
+        padding: 13px 20px;
+        color: var(--muted);
+        font-size: 12px;
+        border-top: 1px solid var(--line);
+      }
+      .notes-section {
+        padding: 48px 0 72px;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 65px;
+      }
+      .notes-section h2 {
+        font-size: 28px;
+      }
+      .notes-intro {
+        margin-top: 14px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .note-list {
+        display: grid;
+        gap: 23px;
+      }
+      .note {
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        gap: 12px;
+      }
+      .note-number {
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        font-size: 11px;
+        color: #7e8e58;
+      }
+      .note h3 {
+        font-size: 15px;
+        letter-spacing: 0;
+        margin: 1px 0 7px;
+      }
+      .note p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .footer {
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 26px 0 32px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .footer a {
+        color: var(--green);
+      }
+      @media (max-width: 960px) {
+        main,
+        .topbar,
+        .footer {
+          width: calc(100% - 48px);
+        }
+        .hero {
+          gap: 32px;
+          padding: 48px 0 75px;
+        }
+        .hero h1 {
+          font-size: 47px;
+        }
+        .platform-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .hero-visual {
+          padding: 20px;
+        }
+        .mini-box {
+          padding: 13px 10px;
+        }
+        .mini-box strong {
+          font-size: 14px;
+        }
+        .hero-copy {
+          font-size: 15px;
+        }
+        .notes-section {
+          gap: 32px;
+        }
+      }
+      @media (max-width: 640px) {
+        main,
+        .topbar,
+        .footer {
+          width: calc(100% - 36px);
+        }
+        .topbar {
+          padding: 21px 0;
+          flex-wrap: wrap;
+        }
+        .brand {
+          font-size: 18px;
+        }
+        .top-links {
+          gap: 14px;
+          font-size: 12px;
+        }
+        .top-links .desktop-only {
+          display: none;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 38px;
+          padding: 40px 0 64px;
+        }
+        .hero h1 {
+          font-size: clamp(36px, 10vw, 45px);
+        }
+        .hero-copy {
+          margin: 20px 0 25px;
+          font-size: 15px;
+        }
+        .eyebrow {
+          margin-bottom: 17px;
+          font-size: 11px;
+        }
+        .hero-visual {
+          max-width: 440px;
+          width: 100%;
+          margin: auto;
+          transform: none;
+        }
+        .mini-box {
+          padding: 18px 15px;
+        }
+        .mini-box strong {
+          font-size: 16px;
+        }
+        .hero-note {
+          font-size: 12px;
+        }
+        .section-heading {
+          display: block;
+          margin-bottom: 22px;
+        }
+        .section-heading p {
+          margin-top: 13px;
+        }
+        .platform-grid {
+          grid-template-columns: 1fr;
+        }
+        .platform-card {
+          padding: 23px;
+        }
+        .platform-actions .download-link {
+          flex: 1;
+          min-height: 41px;
+        }
+        .platform-card p {
+          font-size: 13px;
+        }
+        .architecture .download-link {
+          min-height: 38px;
+        }
+        .downloads {
+          padding-bottom: 45px;
+        }
+        .download-footnote {
+          font-size: 11px;
+          display: block;
+        }
+        .download-footnote p + p {
+          margin-top: 8px;
+        }
+        .demo-section {
+          padding: 40px 0 45px;
+        }
+        .demo-grid {
+          grid-template-columns: 1fr;
+          gap: 18px;
+        }
+        .demo-image.mobile img {
+          max-height: 480px;
+        }
+        .notes-section {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding: 37px 0 48px;
+        }
+        .footer {
+          display: block;
+          padding: 23px 0;
+        }
+        .footer p + p {
+          margin-top: 8px;
+        }
+        .actions .button {
+          padding: 12px 17px;
+        }
+        .hero-note {
+          line-height: 1.8;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .button {
+          transition: none;
+        }
+        .button:hover {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top"
+        ><span class="brand-mark" aria-hidden="true"
+          ><svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+            <rect
+              x="3"
+              y="3"
+              width="6"
+              height="6"
+              rx="1.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <rect
+              x="15"
+              y="15"
+              width="6"
+              height="6"
+              rx="1.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="M9 6h6a3 3 0 0 1 3 3v6M15 12l3 3 3-3"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg></span
+        >WorkFlow OS</a
+      >
+      <nav class="top-links" aria-label="页面导航">
+        <a href="#downloads">下载</a><a href="#demo">演示</a
+        ><a class="desktop-only" href="https://github.com/ioi610/workflow-os"
+          >GitHub ↗</a
+        ><span class="version">v0.2.0</span>
+      </nav>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">你的工作，有自己的章法</p>
+          <h1 id="hero-title">
+            把工作搭成图，<br /><span>把做法写清楚。</span>
+          </h1>
+          <p class="hero-copy">
+            拖动方框安排先后，点开记录详细做法。还可以把整张图串成完整文字，再从文字还原回来。
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#downloads"
+              >下载软件 <span aria-hidden="true">↓</span></a
+            ><a class="button secondary" href="./app/"
+              >直接打开网页版 <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <p class="hero-note">
+            免费使用 · 无需登录 · 本机自动保存<br />支持电脑、Android，以及
+            iPhone / iPad 主屏幕安装
+          </p>
+        </div>
+        <div
+          class="hero-visual"
+          aria-label="工作流程示意：确认安排后整理资料，并记录具体做法。示例数据。"
+        >
+          <div class="visual-top">
+            <span>会议准备 · 示例</span
+            ><span class="visual-dots" aria-hidden="true"
+              ><i></i><i></i><i></i
+            ></span>
+          </div>
+          <div class="visual-canvas">
+            <div class="mini-box">
+              <span class="mini-number">09:00</span><strong>确认会议安排</strong
+              ><span>点开查看具体做法 ↗</span>
+            </div>
+            <div class="visual-arrow" aria-hidden="true">→</div>
+            <div class="mini-box warm">
+              <span class="mini-number">09:30</span><strong>整理会议资料</strong
+              ><span>按顺序，一步步完成</span>
+            </div>
+          </div>
+          <div class="mini-detail">
+            <strong>确认会议安排 · 具体做法</strong>
+            <p>01　确认时间、地点和参加人员。</p>
+            <p>02　把议题和资料放进会议邀请。</p>
+          </div>
+          <div class="visual-tag">
+            <span aria-hidden="true"></span>从一张图，到一份完整做法
+          </div>
+        </div>
+      </section>
+      <section
+        class="downloads"
+        id="downloads"
+        aria-labelledby="downloads-title"
+      >
+        <div class="section-heading">
+          <h2 id="downloads-title">选择你的设备</h2>
+          <p>
+            安装版无需配置服务器。网页版首次联网打开后，缓存完成即可离线使用。
+          </p>
+        </div>
+        <div class="platform-grid">
+          <article class="platform-card">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="m2 5 9-1.2v7.4H2zm10-1.3L22 2v9.2H12zM2 12.5h9v7.4L2 18.7zm10 0h10V22l-10-1.8z"
+                  /></svg
+              ></span>
+              <h3>Windows</h3>
+            </div>
+            <p class="requirements">Windows 10 / 11 · 64 位</p>
+            <p>安装到电脑，随时打开自己的工作流程。</p>
+            <div class="platform-actions">
+              <a
+                class="download-link"
+                data-release-asset="WorkFlow-OS-Windows-x64.exe"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Windows-x64.exe"
+                >下载安装包 .exe ↓</a
+              >
+            </div>
+          </article>
+          <article class="platform-card">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <path d="M8 21h8m-4-4v4M7 8h3m-3 3h6" /></svg
+              ></span>
+              <h3>macOS</h3>
+            </div>
+            <p class="requirements">macOS 13 及以上 · Apple 芯片 / Intel</p>
+            <p>在“关于本机”中查看芯片，再选择对应版本。</p>
+            <div class="architecture">
+              <div>
+                <span>Apple 芯片</span
+                ><a
+                  class="download-link"
+                  data-release-asset="WorkFlow-OS-macOS-arm64.dmg"
+                  href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-arm64.dmg"
+                  >.dmg ↓</a
+                >
+                <a
+                  class="download-link"
+                  data-release-asset="WorkFlow-OS-macOS-arm64.zip"
+                  href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-arm64.zip"
+                  >.zip ↓</a
+                >
+              </div>
+              <div>
+                <span>Intel 芯片</span
+                ><a
+                  class="download-link"
+                  data-release-asset="WorkFlow-OS-macOS-x64.dmg"
+                  href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-x64.dmg"
+                  >.dmg ↓</a
+                >
+                <a
+                  class="download-link"
+                  data-release-asset="WorkFlow-OS-macOS-x64.zip"
+                  href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-x64.zip"
+                  >.zip ↓</a
+                >
+              </div>
+            </div>
+          </article>
+          <article class="platform-card">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path
+                    d="m8 7-5 5 5 5m8-10 5 5-5 5m-6 2 4-14"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  /></svg
+              ></span>
+              <h3>Linux</h3>
+            </div>
+            <p class="requirements">64 位 x64 · 现代桌面发行版</p>
+            <p>选择可直接运行的 AppImage，或解压版。</p>
+            <div class="platform-actions">
+              <a
+                class="download-link"
+                data-release-asset="WorkFlow-OS-Linux-x64.AppImage"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Linux-x64.AppImage"
+                >AppImage ↓</a
+              ><a
+                class="download-link"
+                data-release-asset="WorkFlow-OS-Linux-x64.tar.gz"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Linux-x64.tar.gz"
+                >.tar.gz ↓</a
+              >
+            </div>
+            <p class="install-help">
+              AppImage 下载后，先在文件属性中允许作为程序执行。
+            </p>
+          </article>
+          <article class="platform-card featured">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <path
+                    d="m8 3-2-2m10 2 2-2M5 9a7 7 0 0 1 14 0v8H5zM3 10v7m18-7v7M8 17v5m8-5v5"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M9 6h.01M15 6h.01"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  /></svg
+              ></span>
+              <h3>Android</h3>
+            </div>
+            <p class="requirements">Android 7 及以上 · 手机 / 平板</p>
+            <p>真正的 Android 安装包，触屏也能整理和查看流程。</p>
+            <div class="platform-actions">
+              <a
+                class="download-link"
+                data-release-asset="WorkFlow-OS-Android.apk"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Android.apk"
+                >下载 Android .apk ↓</a
+              >
+            </div>
+            <p class="install-help">
+              打开 APK 后，按系统提示允许当前浏览器安装此应用。
+            </p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <rect x="6" y="2" width="12" height="20" rx="2.5" />
+                  <path d="M10 18h4" stroke-linecap="round" /></svg
+              ></span>
+              <h3>iPhone / iPad <span class="pill">PWA</span></h3>
+            </div>
+            <p class="requirements">Safari · 添加到主屏幕使用</p>
+            <p>打开网页版，点“分享 → 添加到主屏幕”。首次缓存后可离线打开。</p>
+            <div class="platform-actions">
+              <a class="download-link" href="./app/">用 Safari 打开网页版 ↗</a>
+            </div>
+            <p class="install-help">
+              这是主屏幕网页应用，当前不提供 IPA 或 App Store 安装包。
+            </p>
+          </article>
+          <article class="platform-card">
+            <div class="platform-heading">
+              <span class="platform-icon" aria-hidden="true"
+                ><svg
+                  width="23"
+                  height="23"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                >
+                  <circle cx="12" cy="12" r="9" />
+                  <ellipse cx="12" cy="12" rx="4" ry="9" />
+                  <path d="M3 12h18" /></svg
+              ></span>
+              <h3>浏览器</h3>
+            </div>
+            <p class="requirements">Chrome / Edge / Safari 等现代浏览器</p>
+            <p>现在就开始；支持安装的浏览器可通过地址栏安装按钮添加到桌面。</p>
+            <div class="platform-actions">
+              <a class="download-link" href="./app/">直接开始使用 ↗</a>
+            </div>
+            <p class="install-help">
+              首次联网打开，等待页面和资源加载完成后再离线使用。
+            </p>
+          </article>
+        </div>
+        <div class="download-footnote">
+          <p>
+            电脑安装包未使用 Apple / Windows
+            开发者证书签名，首次打开可能需要系统确认。<a href="#install"
+              >查看安装说明</a
+            >
+          </p>
+          <p>
+            <a
+              data-release-asset="SHA256SUMS.txt"
+              href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/SHA256SUMS.txt"
+              >SHA-256 校验文件</a
+            >
+            ·
+            <a href="https://github.com/ioi610/workflow-os/releases/tag/v0.2.0"
+              >全部版本文件 ↗</a
+            >
+          </p>
+        </div>
+      </section>
+      <section class="demo-section" id="demo" aria-labelledby="demo-title">
+        <div class="section-heading">
+          <h2 id="demo-title">看看怎样用</h2>
+          <p>
+            以下为界面示意动画，使用示例数据展示操作。点击 GIF 下载可保存分享。
+          </p>
+        </div>
+        <div class="demo-grid">
+          <figure class="demo-card" style="margin: 0">
+            <div class="demo-label">
+              <h3>电脑端演示</h3>
+              <a
+                data-release-asset="workflow-os-demo.gif"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/workflow-os-demo.gif"
+                >下载 GIF ↓</a
+              >
+            </div>
+            <a
+              class="demo-image"
+              href="./demo/workflow-os-demo.gif"
+              aria-label="打开电脑端功能示意动画"
+              ><picture
+                ><source
+                  media="(prefers-reduced-motion: reduce)"
+                  srcset="./demo/workflow-os-demo-poster.png" />
+                <img
+                  src="./demo/workflow-os-demo.gif"
+                  alt="电脑端功能示意：拖动工作方框、连接箭头、填写做法并生成完整文字。使用示例数据。"
+                  loading="lazy"
+                  width="1000"
+                  height="680" /></picture
+            ></a>
+            <figcaption class="demo-caption">
+              拖动方框 → 写清做法 → 生成文字 → 还原整张流程图
+            </figcaption>
+          </figure>
+          <figure class="demo-card" style="margin: 0">
+            <div class="demo-label">
+              <h3>手机端演示</h3>
+              <a
+                data-release-asset="workflow-os-mobile-demo.gif"
+                href="https://github.com/ioi610/workflow-os/releases/download/v0.2.0/workflow-os-mobile-demo.gif"
+                >下载 GIF ↓</a
+              >
+            </div>
+            <a
+              class="demo-image mobile"
+              href="./demo/workflow-os-mobile-demo.gif"
+              aria-label="打开手机端功能示意动画"
+              ><picture
+                ><source
+                  media="(prefers-reduced-motion: reduce)"
+                  srcset="./demo/workflow-os-mobile-demo-poster.png" />
+                <img
+                  src="./demo/workflow-os-mobile-demo.gif"
+                  alt="手机端功能示意：查看流程、打开具体做法、搜索工作清单和复制完整流程。使用示例数据。"
+                  loading="lazy"
+                  width="540"
+                  height="960" /></picture
+            ></a>
+            <figcaption class="demo-caption">
+              手机随手查看，把做法带在身边
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="notes-section" id="install" aria-labelledby="notes-title">
+        <div>
+          <h2 id="notes-title">开始前，知道这几件事</h2>
+          <p class="notes-intro">
+            没有账号步骤，也不用准备 API 密钥。打开后就可以搭建自己的工作流程。
+          </p>
+        </div>
+        <div class="note-list">
+          <article class="note">
+            <span class="note-number" aria-hidden="true">1</span>
+            <div>
+              <h3>各设备分别保存，不会自动同步</h3>
+              <p>
+                内容自动存到当前设备。浏览器版保存在当前浏览器中；请保留应用数据和网站数据。电脑、Android
+                与浏览器之间不会自动共享工作内容。
+              </p>
+            </div>
+          </article>
+          <article class="note">
+            <span class="note-number" aria-hidden="true">2</span>
+            <div>
+              <h3>用“复制全文”搬移框架和文字</h3>
+              <p>
+                复制完整流程后，在另一台设备的“文字生成流程图”中粘贴，可以还原框架和做法文字。旧服务器上的图片不会随文字迁移，需要重新添加。
+              </p>
+            </div>
+          </article>
+          <article class="note">
+            <span class="note-number" aria-hidden="true">3</span>
+            <div>
+              <h3>首次安装可能需要系统确认</h3>
+              <p>
+                Windows 若显示来源提示，可核对仓库与 SHA-256
+                校验后，在提示允许时选择“更多信息 → 仍要运行”。macOS
+                如阻止打开，可在尝试打开后，到“系统设置 →
+                隐私与安全性”按提示确认。无需关闭系统防护。
+              </p>
+            </div>
+          </article>
+          <article class="note">
+            <span class="note-number" aria-hidden="true">4</span>
+            <div>
+              <h3>网页离线使用，先联网打开一次</h3>
+              <p>
+                安装版已内置页面。网页版和 iPhone / iPad
+                主屏幕版需要首次联网完整加载；完成缓存后，才能在离线时打开。
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>WorkFlow OS · 把每次做好的事，变成下次顺手的流程。</p>
+      <p>
+        <a href="https://github.com/ioi610/workflow-os">查看源码</a> ·
+        <a href="https://github.com/ioi610/workflow-os/issues">反馈问题</a> ·
+        v0.2.0
+      </p>
+    </footer>
+  </body>
+</html>

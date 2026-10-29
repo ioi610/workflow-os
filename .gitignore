@@ -1,6 +1,14 @@
 # Dependencies and build output
 node_modules/
 dist/
+frontend/dist-local/
+release/
+site-output/
+*.keystore
+local.properties
+mobile/android/.gradle/
+mobile/android/**/build/
+mobile/android/app/src/main/assets/public/
 target/
 *.tsbuildinfo
 

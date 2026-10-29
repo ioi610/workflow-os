@@ -1,0 +1,24 @@
+{
+  "name": "workflow-os",
+  "version": "0.2.0",
+  "private": true,
+  "description": "A personal workspace for reusable workflows and step-by-step instructions",
+  "author": "WorkFlow OS contributors",
+  "license": "UNLICENSED",
+  "main": "desktop/main.cjs",
+  "scripts": {
+    "build:local": "npm --prefix frontend run build:local",
+    "desktop:prepare": "node scripts/desktop-prepare.mjs",
+    "desktop:test": "node --test desktop/*.test.cjs",
+    "desktop:start": "npm run build:local && npm run desktop:prepare && install-electron && electron .",
+    "desktop:pack": "npm run build:local && npm run desktop:prepare && electron-builder --config desktop/electron-builder.cjs --publish never",
+    "desktop:check-build": "node scripts/desktop-check-build.mjs"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

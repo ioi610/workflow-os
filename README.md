@@ -2,13 +2,36 @@
 
 用于记录工作流程和每件事具体做法的工作空间。React / TypeScript / Vite 前端，Java 21 / Spring Boot 3.5 后端，PostgreSQL 部署方案；本地开发可使用持久化 H2。
 
+## 下载与使用
+
+[打开统一下载页](https://ioi610.github.io/workflow-os/) · [GitHub 安装包与 GIF](https://github.com/ioi610/workflow-os/releases/tag/v0.2.0) · [直接使用网页版](https://ioi610.github.io/workflow-os/app/)
+
+| 设备 | 下载 |
+| --- | --- |
+| Windows x64 | [安装包 EXE](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Windows-x64.exe) |
+| Mac Apple Silicon · macOS 13+ | [DMG](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-arm64.dmg) · [ZIP](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-arm64.zip) |
+| Mac Intel · macOS 13+ | [DMG](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-x64.dmg) · [ZIP](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-macOS-x64.zip) |
+| Linux x64 | [AppImage](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Linux-x64.AppImage) · [tar.gz](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Linux-x64.tar.gz) |
+| Android 7+ · WebView 107+ | [签名 APK](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/WorkFlow-OS-Android.apk) |
+| iPhone / iPad | [Safari 打开](https://ioi610.github.io/workflow-os/app/)，分享 → 添加到主屏幕（PWA，当前没有 IPA） |
+
+安装版无需后端、登录或 API 密钥，自动保存在本机；网页版首次联网加载完成后可离线使用。不同设备分别保存，不会自动同步。原来 Java 服务端的内容不会自动导入；可用「复制全文」及「文字生成流程图」搬入框架和文字，旧服务器图片需重新添加。清除应用/网站数据会清掉本机内容，请备份重要流程。
+
+电脑安装包尚无 Apple / Windows 开发者证书签名或公证，首次运行可能需系统确认来源。[SHA-256 校验文件](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/SHA256SUMS.txt) · [桌面构建说明](docs/desktop-build.md) · [Android 构建说明](docs/android-build.md)
+
 ## 功能演示
 
 26 秒循环演示添加工作、拖动连线、时间调整、具体做法、完整流程和原图还原。动画使用示例数据制作，为界面示意。
 
 ![WorkFlow OS 功能演示](docs/demo/workflow-os-demo.gif)
 
-[查看原始 GIF](docs/demo/workflow-os-demo.gif) · [静态预览](docs/demo/workflow-os-demo-poster.png)
+[下载电脑 GIF](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/workflow-os-demo.gif) · [静态预览](docs/demo/workflow-os-demo-poster.png)
+
+手机端：
+
+<img src="docs/demo/workflow-os-mobile-demo.gif" alt="WorkFlow OS 手机端功能示意，使用示例数据" width="300" />
+
+[下载手机 GIF](https://github.com/ioi610/workflow-os/releases/download/v0.2.0/workflow-os-mobile-demo.gif) · [静态预览](docs/demo/workflow-os-mobile-demo-poster.png)
 
 首页把流程和工作清单放在一起。用一个个工作方框拼出自己的流程，用箭头表示先做什么、后做什么；点击工作名称，查看自己写的具体做法。工作清单会自动列出流程里的每项工作。界面不提供今日任务、完成状态、关注提醒或统计。最初的完整规格保存在 [docs/requirements.md](docs/requirements.md)，仅供查看历史设计。
 
@@ -149,7 +172,7 @@ WORKFLOW_API_TARGET=http://127.0.0.1:18081 npm run dev -- --port 5174 --strictPo
 ## 当前边界
 
 - 正文以中文为主，尚未提供完整的日英翻译。
-- PWA 仅提供安装基础，没有离线编辑或多设备离线同步。
+- 独立安装版及下载站 PWA 支持本机离线编辑，不提供多设备自动同步；原 Java 后端部署版继续使用服务器存储。
 - 图片上传支持 PNG / JPEG，最大 5 MB；媒体也可使用 HTTPS 链接。当前没有视频托管、孤立图片自动清理或对象存储集成。
 - 当前没有密码重置、邮件发送、审批或组织转让界面。
 - 保留旧后端功能仅用于兼容现有数据，不代表这些功能仍属于当前产品界面。

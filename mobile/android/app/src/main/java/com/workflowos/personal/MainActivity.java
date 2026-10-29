@@ -1,0 +1,5 @@
+package com.workflowos.personal;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}
