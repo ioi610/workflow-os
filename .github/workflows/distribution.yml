@@ -116,7 +116,6 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 35
     env:
-      ANDROID_KEYSTORE_PATH: ${{ runner.temp }}/workflow-os-release.keystore
       ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
       ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
       ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
@@ -148,9 +147,11 @@ jobs:
           from pathlib import Path
           key = os.environ.get('KEYSTORE_BASE64', '')
           if not key: raise SystemExit('Android signing key has not been configured.')
-          target = Path(os.environ['ANDROID_KEYSTORE_PATH'])
+          target = Path(os.environ['RUNNER_TEMP']) / 'workflow-os-release.keystore'
           target.write_bytes(base64.b64decode(key, validate=True))
           target.chmod(0o600)
+          with open(os.environ['GITHUB_ENV'], 'a') as env:
+              env.write(f'ANDROID_KEYSTORE_PATH={target}\n')
           PY
       - name: Build and verify signed release
         working-directory: mobile/android
