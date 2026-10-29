@@ -170,7 +170,7 @@ export async function checkSite(directory) {
   );
   assert(
     html.includes("不会自动同步") &&
-      html.includes("图片不会随文字迁移") &&
+      /图片(?:文件)?不会随文字迁移/.test(html) &&
       html.includes("首次联网"),
     "缺少本机保存及首次离线使用说明",
   );
