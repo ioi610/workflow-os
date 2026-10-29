@@ -2,6 +2,14 @@
 
 用于记录工作流程和每件事具体做法的工作空间。React / TypeScript / Vite 前端，Java 21 / Spring Boot 3.5 后端，PostgreSQL 部署方案；本地开发可使用持久化 H2。
 
+## 功能演示
+
+26 秒循环演示添加工作、拖动连线、时间调整、具体做法、完整流程和原图还原。动画使用示例数据制作，为界面示意。
+
+![WorkFlow OS 功能演示](docs/demo/workflow-os-demo.gif)
+
+[查看原始 GIF](docs/demo/workflow-os-demo.gif) · [静态预览](docs/demo/workflow-os-demo-poster.png)
+
 首页把流程和工作清单放在一起。用一个个工作方框拼出自己的流程，用箭头表示先做什么、后做什么；点击工作名称，查看自己写的具体做法。工作清单会自动列出流程里的每项工作。界面不提供今日任务、完成状态、关注提醒或统计。最初的完整规格保存在 [docs/requirements.md](docs/requirements.md)，仅供查看历史设计。
 
 ## 当前功能
