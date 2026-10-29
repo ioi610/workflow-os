@@ -3,6 +3,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs/promises");
 const os = require("node:os");
 const path = require("node:path");
+const vm = require("node:vm");
 const asar = require("@electron/asar");
 const { checkDesktopPackage } = require("./check-package.cjs");
 
@@ -49,6 +50,49 @@ test("rejects a private configuration accidentally added to a package", async ()
       () => checkDesktopPackage(archive),
       /Unexpected private or runtime file/,
     );
+  } finally {
+    await fs.rm(temporary, { recursive: true, force: true });
+  }
+});
+
+async function windowsPackageChecker() {
+  const source = await fs.readFile(
+    path.join(__dirname, "check-package.cjs"),
+    "utf8",
+  );
+  const module = { exports: {} };
+  vm.runInNewContext(source, {
+    module,
+    console,
+    require(name) {
+      if (name === "@electron/asar")
+        return {
+          ...asar,
+          listPackage: (archive) =>
+            asar
+              .listPackage(archive)
+              .map((entry) => entry.replaceAll("/", "\\")),
+        };
+      return require(name);
+    },
+  });
+  return module.exports.checkDesktopPackage;
+}
+
+test("accepts the Windows ASAR separator format while retaining script existence checks", async () => {
+  const { temporary, archive } = await fixture();
+  try {
+    assert.ok((await windowsPackageChecker())(archive) > 0);
+  } finally {
+    await fs.rm(temporary, { recursive: true, force: true });
+  }
+});
+
+test("Windows ASAR normalization still rejects private configuration", async () => {
+  const { temporary, archive } = await fixture(".env.local");
+  const checker = await windowsPackageChecker();
+  try {
+    assert.throws(() => checker(archive), /Unexpected private or runtime file/);
   } finally {
     await fs.rm(temporary, { recursive: true, force: true });
   }

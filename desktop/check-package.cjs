@@ -3,7 +3,10 @@ const path = require("node:path");
 const asar = require("@electron/asar");
 
 function checkDesktopPackage(archivePath) {
-  const entries = asar.listPackage(archivePath);
+  // ASAR's listPackage uses the host separator, including a leading backslash on Windows.
+  const entries = asar
+    .listPackage(archivePath)
+    .map((entry) => entry.replaceAll("\\", "/"));
   const fixed = new Set([
     "/desktop",
     "/desktop/assets",

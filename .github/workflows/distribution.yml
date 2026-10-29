@@ -132,7 +132,10 @@ jobs:
           java-version: "21"
           cache: gradle
           cache-dependency-path: mobile/android/**/*.gradle*
-      - uses: android-actions/setup-android@v3
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: platform-tools
+          log-accepted-android-sdk-licenses: false
       - name: Install Android build tools
         run: sdkmanager 'platform-tools' 'platforms;android-36' 'build-tools;35.0.0'
       - run: npm ci --prefix frontend
