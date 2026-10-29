@@ -65,6 +65,7 @@ async function windowsPackageChecker() {
     module,
     console,
     require(name) {
+      if (name === "node:path") return path.win32;
       if (name === "@electron/asar")
         return {
           ...asar,
@@ -72,6 +73,14 @@ async function windowsPackageChecker() {
             asar
               .listPackage(archive)
               .map((entry) => entry.replaceAll("/", "\\")),
+          extractFile: (archive, filename) => {
+            assert.equal(
+              filename,
+              path.win32.normalize(filename),
+              "ASAR needs host-native separators when looking up entries.",
+            );
+            return asar.extractFile(archive, filename.replaceAll("\\", "/"));
+          },
         };
       return require(name);
     },

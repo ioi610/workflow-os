@@ -24,7 +24,7 @@ function checkDesktopPackage(archivePath) {
     );
   }
   const html = asar
-    .extractFile(archivePath, "frontend/dist-local/index.html")
+    .extractFile(archivePath, path.join("frontend", "dist-local", "index.html"))
     .toString("utf8");
   assert.match(html, /http-equiv="Content-Security-Policy"/);
   assert.match(html, /connect-src 'none'/);
