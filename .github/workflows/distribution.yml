@@ -194,6 +194,26 @@ jobs:
           path: release-assets
       - name: Include both animated demonstrations
         run: cp docs/demo/workflow-os-demo.gif docs/demo/workflow-os-mobile-demo.gif release-assets/
+      - name: Normalize Linux filename and verify the complete download set
+        working-directory: release-assets
+        run: |
+          # AppImage tools use x86_64 even when electron-builder's architecture is x64.
+          if [ -f WorkFlow-OS-Linux-x86_64.AppImage ]; then
+            mv WorkFlow-OS-Linux-x86_64.AppImage WorkFlow-OS-Linux-x64.AppImage
+          fi
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import assert from 'node:assert/strict';
+          const expected = [
+            'WorkFlow-OS-Windows-x64.exe', 'WorkFlow-OS-Android.apk',
+            'WorkFlow-OS-macOS-arm64.dmg', 'WorkFlow-OS-macOS-arm64.zip',
+            'WorkFlow-OS-macOS-x64.dmg', 'WorkFlow-OS-macOS-x64.zip',
+            'WorkFlow-OS-Linux-x64.AppImage', 'WorkFlow-OS-Linux-x64.tar.gz',
+            'workflow-os-demo.gif', 'workflow-os-mobile-demo.gif',
+          ];
+          assert.deepEqual(fs.readdirSync('.').sort(), expected.sort());
+          for (const name of expected) assert.ok(fs.statSync(name).size > 0, name);
+          NODE
       - name: Add SHA-256 checksums
         working-directory: release-assets
         run: sha256sum WorkFlow-OS-* workflow-os-*.gif > SHA256SUMS.txt
