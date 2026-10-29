@@ -1,0 +1,219 @@
+.library-extra-tools,
+.workflow-title-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.library-extra-tools {
+  margin-left: auto;
+}
+.text-diagram-dialog {
+  width: min(880px, calc(100vw - 28px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid var(--wf-line, #dfe5dc);
+  border-radius: 18px;
+  color: var(--wf-ink, #243c34);
+  background: var(--wf-surface, #fffefa);
+  box-shadow: 0 24px 90px #20361d33;
+}
+.text-diagram-dialog::backdrop {
+  background: #263b2b59;
+}
+.text-diagram-dialog form {
+  margin: 0;
+}
+.text-diagram-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 22px 26px 18px;
+}
+.text-diagram-heading h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.text-diagram-heading > button {
+  display: grid;
+  place-items: center;
+  padding: 6px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+.text-diagram-body {
+  padding: 0 26px;
+}
+.text-diagram-body > label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 14px;
+}
+.text-diagram-body > textarea,
+.text-diagram-body > input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--wf-line, #dfe5dc);
+  border-radius: 10px;
+  background: white;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.text-diagram-body > textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+.text-diagram-input-meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 18px;
+  color: var(--wf-muted, #5e715d);
+  font-size: 12px;
+}
+.text-diagram-input-meta p {
+  margin: 0;
+  line-height: 1.7;
+}
+.text-diagram-input-meta span {
+  white-space: nowrap;
+}
+.text-diagram-instructions,
+.text-diagram-preview-meta {
+  margin: 8px 0 18px;
+  color: var(--wf-muted, #5e715d);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.text-diagram-generate {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.text-diagram-generate p {
+  margin: 0;
+  color: var(--wf-muted, #5e715d);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.text-diagram-preview {
+  margin-top: 16px;
+}
+.text-diagram-preview .auto-layout-preview {
+  max-height: min(45dvh, 480px);
+}
+.text-diagram-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+.text-diagram-details article {
+  min-width: 0;
+  padding: 15px 17px;
+  border: 1px solid var(--wf-line, #dfe5dc);
+  border-radius: 11px;
+  background: #f6f8f0;
+  overflow-wrap: anywhere;
+}
+.text-diagram-details h3 {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+.text-diagram-details ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.text-diagram-details li,
+.text-diagram-details p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+.text-diagram-notice {
+  color: #8b6e35;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.text-diagram-notice ul {
+  padding-left: 20px;
+}
+.text-diagram-matches {
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.text-diagram-matches > div {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: 10px;
+}
+.text-diagram-matches button {
+  display: grid;
+  gap: 4px;
+  padding: 13px 15px;
+  border: 1px solid var(--wf-line, #dfe5dc);
+  border-radius: 10px;
+  background: #f6f8f0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+.text-diagram-matches button:hover,
+.text-diagram-matches button:focus-visible {
+  border-color: var(--wf-ink, #243c34);
+}
+.text-diagram-matches button span {
+  color: var(--wf-muted, #5e715d);
+  font-size: 12px;
+}
+.text-diagram-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px 26px 24px;
+}
+@media (max-width: 640px) {
+  .workflow-title-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .workflow-title-actions > .btn {
+    font-size: 12px;
+    padding-inline: 12px;
+  }
+  .text-diagram-heading {
+    padding: 18px;
+  }
+  .text-diagram-body {
+    padding-inline: 18px;
+  }
+  .text-diagram-input-meta {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .text-diagram-generate {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .text-diagram-details {
+    grid-template-columns: 1fr;
+  }
+  .text-diagram-actions {
+    padding: 18px;
+    flex-wrap: wrap;
+  }
+}

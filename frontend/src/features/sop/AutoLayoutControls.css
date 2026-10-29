@@ -1,0 +1,84 @@
+.auto-layout-dialog {
+  width: min(760px, calc(100vw - 28px));
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 1px solid #dbe2cf;
+  border-radius: 18px;
+  color: #35533a;
+  background: #fffefb;
+  box-shadow: 0 24px 90px #20361d33;
+}
+.auto-layout-dialog::backdrop {
+  background: #263b2b59;
+}
+.auto-layout-dialog form {
+  margin: 0;
+}
+.auto-layout-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px 26px 14px;
+}
+.auto-layout-heading h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.auto-layout-heading > button {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  padding: 6px;
+  cursor: pointer;
+}
+.auto-layout-body {
+  padding: 0 26px;
+}
+.auto-layout-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.auto-layout-tabs button {
+  padding: 7px 13px;
+  border: 1px solid #dce4d3;
+  border-radius: 8px;
+  background: #f6f8ef;
+  color: #68805d;
+  cursor: pointer;
+  font-size: 12px;
+}
+.auto-layout-tabs button[aria-pressed="true"] {
+  background: #e8efdd;
+  border-color: #8da77c;
+  color: #355b3d;
+}
+.auto-layout-preview {
+  display: block;
+  width: 100%;
+  max-height: min(52dvh, 520px);
+}
+.auto-layout-body p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.auto-layout-warning {
+  color: #8b6e35;
+}
+.auto-layout-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 18px 26px 24px;
+}
+@media (max-width: 640px) {
+  .auto-layout-heading {
+    padding: 18px 18px 12px;
+  }
+  .auto-layout-body {
+    padding-inline: 18px;
+  }
+  .auto-layout-actions {
+    padding: 16px 18px 20px;
+  }
+}

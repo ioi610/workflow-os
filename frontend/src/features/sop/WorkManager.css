@@ -1,0 +1,222 @@
+.work-manager-list {
+  margin-top: 32px;
+  max-width: 100%;
+  min-width: 0;
+  border: 1px solid #dbe3d5;
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.work-manager-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e2e8dc;
+  flex-wrap: wrap;
+}
+.work-manager-list-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #607b50;
+}
+.work-manager-list-title h2 {
+  margin: 0;
+  font-size: 13px;
+}
+.work-manager-list-title > span {
+  font-size: 10px;
+  color: #8c9b7f;
+  padding-left: 4px;
+}
+.work-manager-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  min-width: 0;
+  max-width: 100%;
+}
+.work-manager-filters .search {
+  width: 246px;
+}
+.work-manager-filters .search input {
+  font-size: 11px;
+}
+.work-manager-filters select {
+  width: 155px;
+  max-width: 100%;
+  min-height: 39px;
+  font-size: 11px;
+  color: #718764;
+}
+.work-manager-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+.work-manager-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  text-align: left;
+}
+.work-manager-table thead {
+  background: #f5f7f1;
+}
+.work-manager-table thead th {
+  padding: 10px 15px;
+  color: #819174;
+  font-size: 10px;
+  font-weight: 500;
+  border-bottom: 1px solid #dfe6d8;
+  border-right: 1px solid #e9ede3;
+}
+.work-manager-table thead th:first-child {
+  width: 24%;
+  padding-left: 20px;
+}
+.work-manager-table thead th:nth-child(2) {
+  width: 14%;
+}
+.work-manager-table thead th:nth-child(3) {
+  width: 24%;
+}
+.work-manager-table thead th:nth-child(4) {
+  width: 17%;
+}
+.work-manager-table thead th:last-child {
+  width: 21%;
+  border-right: 0;
+}
+.work-manager-table tbody th,
+.work-manager-table td {
+  height: 42px;
+  padding: 7px 15px;
+  border-bottom: 1px solid #edf0e7;
+  font-size: 11px;
+  line-height: 1.45;
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+.work-manager-table tbody th {
+  padding-left: 20px;
+  font-weight: 550;
+}
+.work-manager-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+.work-manager-table tbody tr:hover {
+  background: #f6f9f2;
+}
+.work-manager-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0;
+  color: #3c5e33;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 550;
+}
+.work-manager-module-icon {
+  width: 11px;
+  height: 11px;
+  background: #e1ead7;
+  border: 1px solid #b8cca2;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.work-manager-workflow,
+.work-manager-method {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #738a61;
+}
+a.work-manager-name:hover > span:last-child,
+.work-manager-workflow:hover,
+.work-manager-method:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.work-manager-table .work-manager-record-id {
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-size: 10px;
+  color: #85917b;
+  font-variant-numeric: tabular-nums;
+}
+.work-manager-unavailable {
+  color: #afb8a7;
+  font-size: 10px;
+}
+.work-manager-footnote {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 11px 20px;
+  font-size: 9px;
+  color: #97a68a;
+  background: #fbfcf8;
+  border-top: 1px solid #e9edde;
+}
+.work-manager-message {
+  margin: 23px;
+}
+.work-manager-link-error {
+  padding: 10px 20px;
+  background: #fff9ec;
+  color: #927a50;
+  font-size: 11px;
+}
+.work-manager-link-error button {
+  margin-left: 10px;
+  text-decoration: underline;
+}
+.work-manager-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.work-manager-table .work-manager-locate {
+  padding: 5px 8px;
+  gap: 4px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+.work-manager-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+@media (max-width: 640px) {
+  .work-manager-toolbar {
+    padding: 15px 16px;
+    gap: 15px;
+  }
+  .work-manager-list-title h2 {
+    font-size: 12px;
+  }
+  .work-manager-filters {
+    width: 100%;
+  }
+  .work-manager-filters .search,
+  .work-manager-filters select {
+    width: 100%;
+  }
+  .work-manager-footnote {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  .work-manager-list > .empty {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

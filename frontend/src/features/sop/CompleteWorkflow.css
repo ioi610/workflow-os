@@ -1,0 +1,198 @@
+.app main.complete-workflow {
+  max-width: 1040px;
+  margin-inline: auto;
+}
+.complete-screen-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.complete-screen-tools .back-link {
+  margin: 0;
+}
+.complete-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.complete-tools .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.complete-paper {
+  background: #fffefb;
+  border: 1px solid #e0e6d7;
+  border-radius: 18px;
+  padding: 40px 44px 44px;
+  box-shadow: 0 8px 32px #253d2508;
+}
+.complete-paper h1 {
+  margin: 0 0 28px;
+  color: #304c39;
+  font-size: 25px;
+  line-height: 1.5;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.complete-prose p {
+  margin: 0 0 24px;
+  color: #40553e;
+  font-size: 16px;
+  line-height: 2.15;
+  letter-spacing: 0.015em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.complete-prose p:last-child {
+  margin-bottom: 0;
+}
+.procedure-order-controls {
+  margin: 0 0 22px;
+  font-size: 12px;
+}
+.procedure-order-panel {
+  margin-top: 14px;
+  padding: 16px 20px;
+  border: 1px solid #dce4d3;
+  border-radius: 12px;
+  background: #fffefb;
+}
+.procedure-order-panel ol {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px;
+  max-height: 340px;
+  overflow: auto;
+}
+.procedure-order-panel li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 9px 0;
+  border-bottom: 1px solid #edf0e7;
+  color: #405e46;
+  font-size: 13px;
+}
+.procedure-order-panel li > div {
+  display: flex;
+  gap: 8px;
+}
+.procedure-order-panel li button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #dce4d3;
+  border-radius: 7px;
+  color: #55734e;
+  background: #fbfcf7;
+  cursor: pointer;
+}
+.procedure-order-panel li button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+.procedure-order-panel p {
+  margin: 10px 0 0;
+  color: #849176;
+  font-size: 12px;
+  line-height: 1.8;
+}
+.complete-source-choice {
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border: 1px solid #ded9bc;
+  border-radius: 10px;
+  background: #fffbee;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.complete-source-choice p {
+  margin: 0 0 6px;
+}
+.complete-transfer-copy {
+  margin: 16px 0;
+  color: #55704c;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.complete-transfer-copy p {
+  margin: 0 0 10px;
+}
+.complete-transfer-copy textarea {
+  width: 100%;
+  min-height: 180px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+@media (max-width: 640px) {
+  .complete-screen-tools {
+    align-items: stretch;
+    gap: 20px;
+  }
+  .complete-tools {
+    margin-left: auto;
+  }
+  .complete-tools .btn {
+    padding-inline: 11px;
+  }
+  .complete-paper {
+    padding: 25px 22px 28px;
+    border-radius: 13px;
+  }
+  .complete-paper h1 {
+    font-size: 22px;
+    margin-bottom: 22px;
+  }
+  .complete-prose p {
+    font-size: 15px;
+    line-height: 2.05;
+  }
+  .procedure-order-panel {
+    padding: 14px;
+  }
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm;
+  }
+  html,
+  body,
+  .handbook-app {
+    background: white !important;
+    color: #172d20 !important;
+  }
+  .app main.complete-workflow {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .complete-screen-tools,
+  .complete-screen-only,
+  .toast {
+    display: none !important;
+  }
+  .complete-paper {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .complete-paper h1 {
+    font-size: 20pt;
+    break-after: avoid;
+  }
+  .complete-prose p {
+    font-size: 11pt;
+    line-height: 1.9;
+    orphans: 3;
+    widows: 3;
+  }
+}

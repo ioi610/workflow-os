@@ -1,0 +1,29 @@
+# Dependencies and build output
+node_modules/
+dist/
+target/
+*.tsbuildinfo
+
+# Local settings and credentials
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+
+# Personal workflows, uploads, backups and sessions
+.data/
+*.mv.db
+*.trace.db
+*.sqlite
+*.sqlite3
+*.log
+
+# Local verification artifacts may contain personal workflow content
+docs/screenshots/
+frontend/test-results/
+frontend/playwright-report/

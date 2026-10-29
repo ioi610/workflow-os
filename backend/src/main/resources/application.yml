@@ -1,0 +1,34 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      timeout: 8h
+      cookie:
+        http-only: true
+        same-site: strict
+        secure: ${COOKIE_SECURE:false}
+spring:
+  config:
+    import: optional:file:../.env.local[.properties],optional:file:./.env.local[.properties]
+  datasource:
+    url: ${DATABASE_URL:jdbc:h2:file:./.data/workflow;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH}
+    username: ${DATABASE_USER:sa}
+    password: ${DATABASE_PASSWORD:}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+server.error.include-message: always
+spring.servlet.multipart.max-file-size: 5MB
+spring.servlet.multipart.max-request-size: 6MB
+workflow:
+  diagram:
+    # The free version generates diagrams locally. A saved key alone never enables paid requests.
+    enabled: false
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_DIAGRAM_MODEL:gpt-5.4-mini}
